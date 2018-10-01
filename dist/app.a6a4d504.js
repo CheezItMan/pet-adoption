@@ -22170,19 +22170,15 @@ function (_React$Component) {
   _createClass(App, [{
     key: "render",
     value: function render() {
-      return _react.default.createElement("div", {}, [_react.default.createElement("h1", {}, "Adopt Me!"), _react.default.createElement(_pet.default, {
+      return _react.default.createElement("main", null, _react.default.createElement("h1", null, "Adopt Me"), _react.default.createElement(_pet.default, {
         petName: "Lucky",
         petType: "Dog",
-        petBreed: "Mini-Pincher"
+        petBreed: "Pomeranian"
       }), _react.default.createElement(_pet.default, {
         petName: "Nicky",
         petType: "Dog",
-        petBreed: "Mini-Pincher"
-      }), _react.default.createElement(_pet.default, {
-        petName: "Shadow",
-        petType: "Cat",
-        petBreed: "Maine Coon"
-      })]);
+        petBreed: "Mini Pincher"
+      }));
     }
   }]);
 
