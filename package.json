@@ -1,0 +1,29 @@
+{
+  "name": "demo-app",
+  "version": "1.0.0",
+  "description": "A Demo React App from Front-End-Masters",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest",
+    "format": "prettier --write \"src/**/*.{js,jsx,css,json}  \" ",
+    "format:check": "prettier --list-different \"src/**/*.{js,jsx,css,json}  \" ",
+    "lint": "eslint \"src/**/*{.js,jsx}\""
+  },
+  "keywords": [
+    "react",
+    "learning",
+    "simple"
+  ],
+  "author": "Chris McAnally",
+  "license": "MIT",
+  "dependencies": {
+    "prettier": "^1.14.3",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2"
+  },
+  "devDependencies": {
+    "eslint": "^5.6.1",
+    "eslint-config-prettier": "^3.1.0",
+    "eslint-plugin-prettier": "^2.7.0"
+  }
+}
