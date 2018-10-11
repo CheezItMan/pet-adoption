@@ -25572,7 +25572,7 @@ function (_React$Component) {
         return _react.default.createElement("option", {
           key: animal,
           value: animal
-        }, animal);
+        }, "".concat(animal.charAt(0).toUpperCase()).concat(animal.slice(1)));
       }))));
     }
   }]);

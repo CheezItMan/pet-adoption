@@ -45,7 +45,7 @@ class SearchParams extends React.Component {
             <option />
             {ANIMALS.map(animal => (
               <option key={animal} value={animal}>
-                {animal}
+                {`${animal.charAt(0).toUpperCase()}${animal.slice(1)}`}
               </option>
             ))}
           </select>
