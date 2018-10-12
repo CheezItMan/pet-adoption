@@ -25544,19 +25544,6 @@ function (_React$Component) {
       animal: "",
       breed: "",
       breeds: []
-    }, _this.handleLocationChange = function (event) {
-      _this.setState({
-        location: event.target.value
-      });
-    }, _this.handleAnimalChange = function (event) {
-      _this.setState({
-        animal: event.target.value,
-        breed: ""
-      }, _this.getBreeds);
-    }, _this.handleBreedChange = function (event) {
-      _this.setState({
-        breed: event.target.value
-      });
     }, _this.getBreeds = function () {
       if (_this.state.animal) {
         petfinder.breed.list({
@@ -25633,7 +25620,33 @@ function (_React$Component) {
 
 var _default = SearchParams;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","petfinder-client":"node_modules/petfinder-client/index.js"}],"src/app.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","petfinder-client":"node_modules/petfinder-client/index.js"}],"src/searchcontext.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Consumer = exports.Provider = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var SearchContext = _react.default.createContext({
+  location: "Seattle, WA",
+  animal: "",
+  breed: "",
+  breeds: [],
+  handleAnimalChange: function handleAnimalChange() {},
+  handleBreedChange: function handleBreedChange() {},
+  getBreeds: function getBreeds() {}
+});
+
+var Provider = SearchContext.Provider;
+exports.Provider = Provider;
+var Consumer = SearchContext.Consumer;
+exports.Consumer = Consumer;
+},{"react":"node_modules/react/index.js"}],"src/app.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -25650,6 +25663,10 @@ var _results = _interopRequireDefault(require("./components/results"));
 var _details = _interopRequireDefault(require("./components/details"));
 
 var _searchparams = _interopRequireDefault(require("./components/searchparams"));
+
+var _petfinderClient = _interopRequireDefault(require("petfinder-client"));
+
+var _searchcontext = require("./searchcontext");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -25677,9 +25694,66 @@ function (_React$Component) {
   _inherits(App, _React$Component);
 
   function App(props) {
+    var _this;
+
     _classCallCheck(this, App);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(App).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(App).call(this, props));
+
+    _this.handleLocationChange = function (event) {
+      _this.setState({
+        location: event.target.value
+      });
+    };
+
+    _this.handleAnimalChange = function (event) {
+      _this.setState({
+        animal: event.target.value,
+        breed: ""
+      }, _this.getBreeds);
+    };
+
+    _this.handleBreedChange = function (event) {
+      _this.setState({
+        breed: event.target.value
+      });
+    };
+
+    _this.getBreeds = function () {
+      if (_this.state.animal) {
+        petfinder.breed.list({
+          animal: _this.state.animal
+        }).then(function (data) {
+          if (data.petfinder && data.petfinder.breeds && Array.isArray(data.petfinder.breeds.breed)) {
+            console.log("Getting Breeds ".concat(data.petfinder.breeds.breed));
+
+            _this.setState({
+              breeds: data.petfinder.breeds.breed
+            });
+          } else {
+            _this.setState({
+              breeds: []
+            });
+          }
+        });
+      } else {
+        _this.setState({
+          breeds: []
+        });
+      }
+    };
+
+    _this.state = {
+      location: "Seattle, WA",
+      animal: "",
+      breed: "",
+      breeds: [],
+      handleAnimalChange: _this.handleAnimalChange,
+      handleBreedChange: _this.handleBreedChange,
+      handleLocationChange: _this.handleLocationChange,
+      getBreeds: _this.getBreeds
+    };
+    return _this;
   }
 
   _createClass(App, [{
@@ -25702,7 +25776,7 @@ function (_React$Component) {
 
 var _default = App;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","@reach/router":"node_modules/@reach/router/es/index.js","./components/results":"src/components/results.js","./components/details":"src/components/details.js","./components/searchparams":"src/components/searchparams.js"}],"src/index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","@reach/router":"node_modules/@reach/router/es/index.js","./components/results":"src/components/results.js","./components/details":"src/components/details.js","./components/searchparams":"src/components/searchparams.js","petfinder-client":"node_modules/petfinder-client/index.js","./searchcontext":"src/searchcontext.js"}],"src/index.js":[function(require,module,exports) {
 "use strict";
 
 var _reactDom = _interopRequireDefault(require("react-dom"));

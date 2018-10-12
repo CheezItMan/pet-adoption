@@ -14,28 +14,6 @@ class SearchParams extends React.Component {
     breeds: []
   };
 
-  handleLocationChange = event => {
-    this.setState({
-      location: event.target.value
-    });
-  };
-
-  handleAnimalChange = event => {
-    this.setState(
-      {
-        animal: event.target.value,
-        breed: ""
-      },
-      this.getBreeds
-    );
-  };
-
-  handleBreedChange = event => {
-    this.setState({
-      breed: event.target.value
-    });
-  };
-
   getBreeds = () => {
     if (this.state.animal) {
       petfinder.breed.list({ animal: this.state.animal }).then(data => {
