@@ -7,6 +7,11 @@ import SearchParams from "./components/searchparams";
 import pf from "petfinder-client";
 import { Provider } from "./searchcontext";
 
+const petfinder = pf({
+  key: process.env.API_KEY,
+  secret: process.env.API_SECRET
+});
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -72,14 +77,27 @@ class App extends React.Component {
   render() {
     return (
       <main>
-        <h1>
-          <Link to="/">Adopt Me</Link>
-        </h1>
-        <Router>
-          <Results path="/" />
-          <Details path="/details/:id" />
-          <SearchParams path="/search-params" />
-        </Router>
+        <header>
+          <ul>
+            <li>
+              <Link to="/">Adopt Me</Link>
+            </li>
+            <li>
+              <Link to="/search-params">
+                <span aria-label="search" role="img">
+                  🔍
+                </span>
+              </Link>
+            </li>
+          </ul>
+        </header>
+        <Provider value={this.state}>
+          <Router>
+            <Results path="/" />
+            <Details path="/details/:id" />
+            <SearchParams path="/search-params" />
+          </Router>
+        </Provider>
       </main>
     );
   }

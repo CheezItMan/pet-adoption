@@ -4,10 +4,22 @@ import { Link } from "@reach/router";
 class Pet extends React.Component {
   render() {
     const { id, name, animal, breed, media, location } = this.props;
+    console.log("Media");
+    console.log(media);
+    console.log(this.props);
+    console.log(name);
 
-    let photos = [];
-    if (media && media.photos && media.photos.photo) {
-      photos = media.photos.photo.filter(photo => photo["@size"] === "pn");
+    let photos = [
+      {
+        value: "https://placekitten.com/100/100"
+      }
+    ];
+    if (media != null) {
+      if (media.photos != null) {
+        if (media && media.photos && media.photos.photo) {
+          photos = media.photos.photo.filter(photo => photo["@size"] === "pn");
+        }
+      }
     }
 
     return (
