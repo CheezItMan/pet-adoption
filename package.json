@@ -4,7 +4,8 @@
   "description": "A Demo React App from Front-End-Masters",
   "main": "src/index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --silent --watch",
+    "test:coverage": "jest --silent --coverage",
     "format": "prettier --write \"src/**/*.{js,jsx,css,json}  \" ",
     "format:check": "prettier --list-different \"src/**/*.{js,jsx,css,json}  \" ",
     "lint": "eslint \"src/**/*{.js,jsx}\"",
@@ -36,6 +37,8 @@
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-prettier": "^2.7.0",
     "eslint-plugin-react": "^7.11.1",
-    "parcel-bundler": "^1.10.1"
+    "jest": "^23.6.0",
+    "parcel-bundler": "^1.10.1",
+    "react-test-renderer": "^16.5.2"
   }
 }
