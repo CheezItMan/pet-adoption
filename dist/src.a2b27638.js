@@ -27504,14 +27504,36 @@ var _react = _interopRequireDefault(require("react"));
 
 var _router = require("@reach/router");
 
-var _reactEmotion = _interopRequireDefault(require("react-emotion"));
+var _reactEmotion = _interopRequireWildcard(require("react-emotion"));
 
 var _colors = _interopRequireDefault(require("./colors"));
 
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _templateObject2() {
+function _templateObject4() {
   var data = _taggedTemplateLiteral(["\n  &:hover {\n    text-decoration: underline;\n  }\n\n  span {\n    color: red;\n  }\n"]);
+
+  _templateObject4 = function _templateObject4() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject3() {
+  var data = _taggedTemplateLiteral(["\n  background-color: ", ";\n  position: sticky;\n  top: 0;\n  z-index: 10;\n"]);
+
+  _templateObject3 = function _templateObject3() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject2() {
+  var data = _taggedTemplateLiteral(["\n  display: inline-block;\n  animation: 1s ", " linear infinite;\n"]);
 
   _templateObject2 = function _templateObject2() {
     return data;
@@ -27521,7 +27543,7 @@ function _templateObject2() {
 }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  background-color: ", ";\n  position: sticky;\n  top: 0;\n  z-index: 10;\n"]);
+  var data = _taggedTemplateLiteral(["\n  from {\n    transform: rotate(0deg)\n  }\n\n  to {\n    transform: rotate(360deg)\n  }\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -27532,15 +27554,17 @@ function _templateObject() {
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-var Container = (0, _reactEmotion.default)("header")(_templateObject(), _colors.default.dark);
-var NavLink = (0, _reactEmotion.default)(_router.Link)(_templateObject2());
+var Spin = (0, _reactEmotion.keyframes)(_templateObject());
+var SpyGlass = (0, _reactEmotion.default)("span")(_templateObject2(), Spin);
+var Container = (0, _reactEmotion.default)("header")(_templateObject3(), _colors.default.dark);
+var NavLink = (0, _reactEmotion.default)(_router.Link)(_templateObject4());
 
 var NavBar = function NavBar() {
   return _react.default.createElement(Container, null, _react.default.createElement(NavLink, {
     to: "/"
   }, "Adopt Me"), _react.default.createElement(NavLink, {
     to: "/search-params"
-  }, _react.default.createElement("span", {
+  }, _react.default.createElement(SpyGlass, {
     "aria-label": "search",
     role: "img"
   }, "\uD83D\uDD0D")));
