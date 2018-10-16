@@ -9,7 +9,9 @@
     "format": "prettier --write \"src/**/*.{js,jsx,css,json}  \" ",
     "format:check": "prettier --list-different \"src/**/*.{js,jsx,css,json}  \" ",
     "lint": "eslint \"src/**/*{.js,jsx}\"",
-    "dev": "parcel index.html"
+    "dev": "parcel index.html",
+    "build": "parcel build --public-url ./dist/ ./index.html",
+    "start": "npm run build && babel-node server/index.js"
   },
   "keywords": [
     "react",
@@ -22,6 +24,7 @@
     "@reach/router": "^1.2.1",
     "babel-cli": "^6.26.0",
     "emotion": "^9.2.12",
+    "express": "^4.16.4",
     "petfinder-client": "0.0.3",
     "prettier": "^1.14.3",
     "react": "^16.5.2",
