@@ -20,6 +20,7 @@
   "license": "MIT",
   "dependencies": {
     "@reach/router": "^1.2.1",
+    "babel-cli": "^6.26.0",
     "emotion": "^9.2.12",
     "petfinder-client": "0.0.3",
     "prettier": "^1.14.3",
